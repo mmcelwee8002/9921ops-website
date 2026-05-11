@@ -198,10 +198,110 @@ body {
   }
 }
 
+/* ========================================
+   Carousel Rotation Animation
+   ======================================== */
+
+.carousel-card.moving {
+  transform:
+    scale(0.96) !important;
+
+  opacity: 0.7;
+}
+
+/* ========================================
+   Sphere Positioning
+   ======================================== */
+
+.carousel-placeholder {
+  perspective: 1400px;
+}
+
+.left-card {
+  transform:
+    rotateY(42deg)
+    rotateZ(-7deg)
+    translateX(-20px)
+    scale(0.84);
+}
+
+.center-card {
+  transform:
+    translateY(-8px)
+    scale(1.08);
+
+  z-index: 5;
+}
+
+.right-card {
+  transform:
+    rotateY(-42deg)
+    rotateZ(7deg)
+    translateX(20px)
+    scale(0.84);
+}
+
+/* Active movement animation */
+
+.carousel-card {
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* ========================================
+   Center Card Click Zones
+   ======================================== */
+
+.center-card {
+  cursor: pointer;
+}
+
+.carousel-zone {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0);
+  font-size: 4rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.zone-left {
+  left: 0;
+}
+
+.zone-right {
+  right: 0;
+}
+
+.zone-left:hover {
+  color: rgba(255, 255, 255, 0.65);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.35),
+    transparent
+  );
+}
+
+.zone-right:hover {
+  color: rgba(255, 255, 255, 0.65);
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.35),
+    transparent
+  );
+}
 
 
 /*mobile*/
-
 
 @media (max-width: 600px) {
   .logo-sub {

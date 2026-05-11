@@ -1,63 +1,156 @@
 // ========================================
-// 9921ops Spherical Carousel Motion
+// 9921ops Spherical Carousel Logic
 // ========================================
 
-// Select carousel cards
-const cards = document.querySelectorAll(".carousel-card");
+// Image list
+const images = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg",
+  "images/photo4.jpg",
+  "images/photo5.jpg",
+  "images/photo6.jpg",
+];
 
-// Mouse movement offset
-let offset = 0;
+// Track active image
+let currentIndex = 1;
 
-// Track mouse movement
-document.addEventListener("mousemove", (e) => {
+// Prevent spam clicking during animation
+let isAnimating = false;
 
-  // Calculate movement amount
-  offset = (e.clientX / window.innerWidth - 0.5) * 20;
+// Card references
+const leftCard = document.querySelector(".left-card");
+const centerCard = document.querySelector(".center-card");
+const rightCard = document.querySelector(".right-card");
 
-  // Update each card position
-  cards.forEach((card, index) => {
+// Image references
+const leftImage = leftCard.querySelector("img");
+const centerImage = centerCard.querySelector("img");
+const rightImage = rightCard.querySelector("img");
 
-    let direction = index - 1;
+// ========================================
+// Update carousel images
+// ========================================
 
-    card.style.transform = `
-      translateX(${direction * offset}px)
-      ${getCardTransform(index)}
-    `;
-  });
+function updateCarousel() {
+
+  const leftIndex =
+    (currentIndex - 1 + images.length) % images.length;
+
+  const centerIndex =
+    currentIndex;
+
+  const rightIndex =
+    (currentIndex + 1) % images.length;
+
+  leftImage.src = images[leftIndex];
+  centerImage.src = images[centerIndex];
+  rightImage.src = images[rightIndex];
+}
+
+// ========================================
+// Animate carousel movement
+// ========================================
+
+function animateRotation(direction) {
+
+  if (isAnimating) return;
+
+  isAnimating = true;
+
+// Animate cards during rotation
+
+centerCard.style.transform =
+  "scale(0.92) translateY(10px)";
+
+if (direction === "right") {
+
+  leftCard.style.transform =
+    "rotateY(65deg) translateX(-80px) scale(0.72)";
+
+  rightCard.style.transform =
+    "rotateY(-25deg) translateX(20px) scale(0.95)";
+
+} else {
+
+  leftCard.style.transform =
+    "rotateY(25deg) translateX(-20px) scale(0.95)";
+
+  rightCard.style.transform =
+    "rotateY(-65deg) translateX(80px) scale(0.72)";
+}
+
+  setTimeout(() => {
+
+    // Update image index
+    if (direction === "right") {
+      currentIndex =
+        (currentIndex + 1) % images.length;
+    } else {
+      currentIndex =
+        (currentIndex - 1 + images.length) % images.length;
+    }
+
+    // Update images
+    updateCarousel();
+
+// Reset transforms after animation
+leftCard.style.transform = "";
+centerCard.style.transform = "";
+rightCard.style.transform = "";
+
+    isAnimating = false;
+
+  }, 350);
+}
+
+// ========================================
+// Button interactions
+// ========================================
+
+const zoneLeft = document.querySelector(".zone-left");
+const zoneRight = document.querySelector(".zone-right");
+
+zoneLeft.addEventListener("click", (e) => {
+  e.stopPropagation();
+  animateRotation("right");
+});
+
+zoneRight.addEventListener("click", (e) => {
+  e.stopPropagation();
+  animateRotation("left");
 });
 
 // ========================================
-// Card Transform Settings
+// Initial Load
 // ========================================
 
-function getCardTransform(index) {
-
-  // Left card
-  if (index === 0) {
-    return "rotateY(38deg) rotateZ(-8deg) scale(0.88)";
-  }
-
-  // Center card
-  if (index === 1) {
-    return "scale(1.08)";
-  }
-
-  // Right card
-  return "rotateY(-38deg) rotateZ(8deg) scale(0.88)";
-}
+updateCarousel();
 
 /*
 ========================================
 FUTURE IDEAS
 ========================================
 
-- Add swipe support for mobile
-- Add infinite scrolling
-- Add auto-rotation
-- Add dynamic image loading
-- Add real photos instead of placeholders
-- Add momentum physics
-- Add click-to-expand
-- Add WebGL enhancement mode
+- Mobile swipe gestures
+- Auto rotation
+- Infinite card depth
+- Physics momentum
+- Dynamic image uploads
+- WebGL enhancement mode
+- AI-generated image streams
+
+True drag/swipe support
+desktop drag
+mobile finger swipe
+5-card orbital depth
+creates real sphere illusion
+Momentum/inertia
+smooth continuation after swipe
+Auto-scroll cinematic mode
+subtle idle movement
+Dynamic image loading
+no manual array maintenance
+
 
 */
