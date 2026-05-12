@@ -108,11 +108,11 @@ filter: blur(0.2px);
 .carousel-placeholder {
   position: relative;
   width: min(900px, 92vw);
-  height: 320px;
-  margin-top: 52px;
+  height: 520px;
+  margin-top: 90px;
 
   /* Visual centering adjustment for orbital carousel */
-  Left: -75px
+  Left: -60px
 }
 
 .carousel-card {
@@ -344,6 +344,116 @@ opacity: 0;
 
   opacity: 0.62;
 }
+
+/* ========================================
+   7-Card Orbital Carousel Layout
+   ======================================== */
+
+.carousel-placeholder {
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+
+/* Back / 12 PM */
+.back-card {
+  left: 50%;
+  top: -55px;
+  transform:
+    translateX(-50%)
+    translateY(-30px)
+    scale(0.42);
+
+  opacity: 0.14;
+  z-index: 1;
+  filter:
+    saturate(0.55)
+    brightness(0.48)
+    blur(1px);
+}
+
+/* Back left */
+.far-left-card {
+  left: 2%;
+  top: 8px;
+  transform:
+    rotateY(72deg)
+    rotateZ(-10deg)
+    scale(0.48);
+
+  opacity: 0.22;
+  z-index: 2;
+}
+
+/* Left */
+.left-card {
+  left: 12%;
+  top: 92px;
+  transform:
+    rotateY(58deg)
+    rotateZ(-7deg)
+    scale(0.68);
+
+  opacity: 0.62;
+  z-index: 3;
+}
+
+/* Front / 6 PM */
+.center-card {
+  left: 50%;
+  top: 190px;
+  transform:
+    translateX(-50%)
+    translateY(10px)
+    scale(1.22);
+
+  opacity: 1;
+  z-index: 7;
+}
+
+/* Right */
+.right-card {
+  right: 12%;
+  top: 92px;
+  transform:
+    rotateY(-58deg)
+    rotateZ(7deg)
+    scale(0.68);
+
+  opacity: 0.62;
+  z-index: 3;
+}
+
+/* Back right */
+.far-right-card {
+  right: 2%;
+  top: 8px;
+  transform:
+    rotateY(-72deg)
+    rotateZ(10deg)
+    scale(0.48);
+
+  opacity: 0.22;
+  z-index: 2;
+}
+
+/* Deep orbit / hidden transition card */
+.deep-card {
+  left: 50%;
+  top: -18px;
+  transform:
+    translateX(-50%)
+    translateY(-50px)
+    scale(0.42);
+
+  opacity: 0.12;
+  z-index: 0;
+  filter:
+    saturate(0.4)
+    brightness(0.35)
+    blur(2px);
+}
+
+
 
 /*mobile*/
 

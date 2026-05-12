@@ -19,14 +19,30 @@ let currentIndex = 1;
 let isAnimating = false;
 
 // Card references
+// Orbit card references
+const deepCard = document.querySelector(".deep-card");
+const backCard = document.querySelector(".back-card");
+
+const farLeftCard = document.querySelector(".far-left-card");
 const leftCard = document.querySelector(".left-card");
+
 const centerCard = document.querySelector(".center-card");
+
 const rightCard = document.querySelector(".right-card");
+const farRightCard = document.querySelector(".far-right-card");
+
 
 // Image references
+const deepImage = deepCard.querySelector("img");
+const backImage = backCard.querySelector("img");
+
+const farLeftImage = farLeftCard.querySelector("img");
 const leftImage = leftCard.querySelector("img");
+
 const centerImage = centerCard.querySelector("img");
+
 const rightImage = rightCard.querySelector("img");
+const farRightImage = farRightCard.querySelector("img");
 
 // ========================================
 // Update carousel images
@@ -34,18 +50,29 @@ const rightImage = rightCard.querySelector("img");
 
 function updateCarousel() {
 
-  const leftIndex =
-    (currentIndex - 1 + images.length) % images.length;
+  const positions = [];
 
-  const centerIndex =
-    currentIndex;
+  // Build orbital image positions
+  for (let i = -3; i <= 3; i++) {
 
-  const rightIndex =
-    (currentIndex + 1) % images.length;
+    positions.push(
+      images[
+        (currentIndex + i + images.length) % images.length
+      ]
+    );
+  }
 
-  leftImage.src = images[leftIndex];
-  centerImage.src = images[centerIndex];
-  rightImage.src = images[rightIndex];
+  // Apply images to orbit positions
+  deepImage.src = positions[0];
+  backImage.src = positions[1];
+
+  farLeftImage.src = positions[2];
+  leftImage.src = positions[3];
+
+  centerImage.src = positions[4];
+
+  rightImage.src = positions[5];
+  farRightImage.src = positions[6];
 }
 
 // ========================================
@@ -165,27 +192,64 @@ centerCard.addEventListener("pointermove", (e) => {
  const moveAmount = dragDistance * 0.12;
 const tiltAmount = dragDistance * 0.03;
 
+// Front card movement
 centerCard.style.transform =
   `translateX(${moveAmount}px)
+   translateY(10px)
    rotateZ(${tiltAmount}deg)
-   scale(1.05)`;
+   scale(1.08)`;
 
-    leftCard.style.transform =
-      `rotateY(42deg)
-       translateX(${moveAmount * 0.35 - 20}px)
-       scale(0.84)`;
+// Left orbit
+leftCard.style.transform =
+  `rotateY(42deg)
+   rotateZ(-7deg)
+   translateX(${moveAmount * 0.35 - 20}px)
+   scale(0.78)`;
 
-    rightCard.style.transform =
-      `rotateY(-42deg)
-       translateX(${moveAmount * 0.35 + 20}px)
-       scale(0.84)`;
+farLeftCard.style.transform =
+  `rotateY(62deg)
+   rotateZ(-10deg)
+   translateX(${moveAmount * 0.22}px)
+   scale(0.62)`;
+
+// Right orbit
+rightCard.style.transform =
+  `rotateY(-42deg)
+   rotateZ(7deg)
+   translateX(${moveAmount * 0.35 + 20}px)
+   scale(0.78)`;
+
+farRightCard.style.transform =
+  `rotateY(-62deg)
+   rotateZ(10deg)
+   translateX(${moveAmount * 0.22}px)
+   scale(0.62)`;
+
+// Back orbit cards
+backCard.style.transform =
+  `translateX(-50%)
+   translateY(-30px)
+   scale(0.58)`;
+
+deepCard.style.transform =
+  `translateX(-50%)
+   translateY(-50px)
+   scale(0.42)`;
   }
 });
 
 // Reset card positions
-centerCard.style.transform = "";
+// Reset orbit transforms
+deepCard.style.transform = "";
+backCard.style.transform = "";
+
+farLeftCard.style.transform = "";
 leftCard.style.transform = "";
+
+centerCard.style.transform = "";
+
 rightCard.style.transform = "";
+farRightCard.style.transform = "";
 
 // End drag / swipe
 centerCard.addEventListener("pointerup", (e) => {
