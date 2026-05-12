@@ -107,8 +107,8 @@ filter: blur(0.2px);
 
 .carousel-placeholder {
   position: relative;
-  width: min(620px, 90vw);
-  height: 220px;
+  width: min(900px, 92vw);
+  height: 320px;
   margin-top: 52px;
 
   /* Visual centering adjustment for orbital carousel */
@@ -118,8 +118,8 @@ filter: blur(0.2px);
 .carousel-card {
   position: absolute;
   top: 30px;
-  width: 150px;
-  height: 190px;
+  width: 220px;
+  height: 280px;
   border-radius: 24px;
   background: linear-gradient(
     145deg,
@@ -281,14 +281,23 @@ filter: blur(0.2px);
   transition:
     color 0.3s ease,
     background 0.3s ease;
+    display: flex;
+align-items: center;
+opacity: 0;
 }
 
 .zone-left {
   left: 0;
+  opacity: 1;
+  justify-content: flex-start;
+  padding-left: 18px;
 }
 
 .zone-right {
   right: 0;
+  opacity: 1;
+  justify-content: flex-end;
+  padding-right: 18px;
 }
 
 .zone-left:hover {
@@ -319,6 +328,21 @@ filter: blur(0.2px);
 
 .center-card img {
   pointer-events: none;
+}
+
+
+/* ========================================
+   Side Card Depth Effect
+   ======================================== */
+
+.left-card,
+.right-card {
+  filter:
+    saturate(0.82)
+    brightness(0.74)
+    blur(0.2px);
+
+  opacity: 0.62;
 }
 
 /*mobile*/

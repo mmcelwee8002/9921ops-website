@@ -162,10 +162,13 @@ centerCard.addEventListener("pointermove", (e) => {
   // Live drag movement
   if (isDragging) {
 
-    const moveAmount = dragDistance * 0.12;
+ const moveAmount = dragDistance * 0.12;
+const tiltAmount = dragDistance * 0.03;
 
-    centerCard.style.transform =
-      `translateX(${moveAmount}px) scale(1.05)`;
+centerCard.style.transform =
+  `translateX(${moveAmount}px)
+   rotateZ(${tiltAmount}deg)
+   scale(1.05)`;
 
     leftCard.style.transform =
       `rotateY(42deg)
