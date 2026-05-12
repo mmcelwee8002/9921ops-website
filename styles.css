@@ -299,7 +299,18 @@ body {
     transparent
   );
 }
+/* ========================================
+   Drag / Swipe Support
+   ======================================== */
 
+.center-card {
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.center-card img {
+  pointer-events: none;
+}
 
 /*mobile*/
 

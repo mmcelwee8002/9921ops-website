@@ -108,19 +108,80 @@ rightCard.style.transform = "";
 // Button interactions
 // ========================================
 
+// ========================================
+// Center Card Click + Drag / Swipe Support
+// ========================================
+
 const zoneLeft = document.querySelector(".zone-left");
 const zoneRight = document.querySelector(".zone-right");
 
+let dragStartX = 0;
+let dragEndX = 0;
+let isDragging = false;
+const swipeThreshold = 45;
+
+// Click left side: move carousel left as viewed on screen
 zoneLeft.addEventListener("click", (e) => {
   e.stopPropagation();
+
+  if (isDragging) return;
+
   animateRotation("right");
 });
 
+// Click right side: move carousel right as viewed on screen
 zoneRight.addEventListener("click", (e) => {
   e.stopPropagation();
+
+  if (isDragging) return;
+
   animateRotation("left");
 });
 
+// Start drag / swipe
+centerCard.addEventListener("pointerdown", (e) => {
+  dragStartX = e.clientX;
+  dragEndX = e.clientX;
+  isDragging = false;
+
+  centerCard.setPointerCapture(e.pointerId);
+});
+
+// Track drag / swipe movement
+centerCard.addEventListener("pointermove", (e) => {
+  dragEndX = e.clientX;
+
+  const dragDistance = dragEndX - dragStartX;
+
+  if (Math.abs(dragDistance) > 8) {
+    isDragging = true;
+  }
+});
+
+// End drag / swipe
+centerCard.addEventListener("pointerup", (e) => {
+  const dragDistance = dragEndX - dragStartX;
+
+  centerCard.releasePointerCapture(e.pointerId);
+
+  if (Math.abs(dragDistance) < swipeThreshold) {
+    return;
+  }
+
+  // Swipe right: move carousel right as viewed on screen
+  if (dragDistance > 0) {
+    animateRotation("left");
+  }
+
+  // Swipe left: move carousel left as viewed on screen
+  if (dragDistance < 0) {
+    animateRotation("right");
+  }
+
+  setTimeout(() => {
+    isDragging = false;
+  }, 50);
+});
 // ========================================
 // Initial Load
 // ========================================
