@@ -118,7 +118,7 @@ const zoneRight = document.querySelector(".zone-right");
 let dragStartX = 0;
 let dragEndX = 0;
 let isDragging = false;
-const swipeThreshold = 45;
+const swipeThreshold = 20;
 
 // Click left side: move carousel left as viewed on screen
 zoneLeft.addEventListener("click", (e) => {
@@ -149,14 +149,40 @@ centerCard.addEventListener("pointerdown", (e) => {
 
 // Track drag / swipe movement
 centerCard.addEventListener("pointermove", (e) => {
+
   dragEndX = e.clientX;
 
   const dragDistance = dragEndX - dragStartX;
 
-  if (Math.abs(dragDistance) > 8) {
+  // Activate dragging state
+  if (Math.abs(dragDistance) > 4) {
     isDragging = true;
   }
+
+  // Live drag movement
+  if (isDragging) {
+
+    const moveAmount = dragDistance * 0.12;
+
+    centerCard.style.transform =
+      `translateX(${moveAmount}px) scale(1.05)`;
+
+    leftCard.style.transform =
+      `rotateY(42deg)
+       translateX(${moveAmount * 0.35 - 20}px)
+       scale(0.84)`;
+
+    rightCard.style.transform =
+      `rotateY(-42deg)
+       translateX(${moveAmount * 0.35 + 20}px)
+       scale(0.84)`;
+  }
 });
+
+// Reset card positions
+centerCard.style.transform = "";
+leftCard.style.transform = "";
+rightCard.style.transform = "";
 
 // End drag / swipe
 centerCard.addEventListener("pointerup", (e) => {
@@ -182,6 +208,8 @@ centerCard.addEventListener("pointerup", (e) => {
     isDragging = false;
   }, 50);
 });
+
+
 // ========================================
 // Initial Load
 // ========================================
