@@ -108,7 +108,7 @@ filter: blur(0.2px);
 .carousel-placeholder {
   position: relative;
   width: min(900px, 92vw);
-  height: 520px;
+  height: 620px;
   margin-top: 90px;
 
   /* Visual centering adjustment for orbital carousel */
@@ -148,6 +148,75 @@ filter: blur(0.2px);
   transform: rotateY(-38deg) rotateZ(8deg) scale(0.88);
   opacity: 0.55;
   z-index: 2;
+}
+
+
+/* ========================================
+   Reusable Orbit Position Classes
+   ======================================== */
+
+/* 12 PM */
+.pos-back {
+  left: 50%;
+  top: -45px;
+  transform: translateX(-50%) scale(0.38);
+  opacity: 0.10;
+  z-index: 1;
+  filter: saturate(0.4) brightness(0.3) blur(2px);
+}
+
+/* 10 PM */
+.pos-far-left {
+  left: 4%;
+  top: 55px;
+  transform: rotateY(72deg) rotateZ(-8deg) scale(0.48);
+  opacity: 0.22;
+  z-index: 2;
+}
+
+/* 8 PM */
+.pos-left {
+  left: 18%;
+  top: 165px;
+  transform: rotateY(58deg) rotateZ(-5deg) scale(0.68);
+  opacity: 0.58;
+  z-index: 4;
+}
+
+/* 6 PM */
+.pos-front {
+  left: 50%;
+  top: 270px;
+  transform: translateX(-50%) scale(1.22);
+  opacity: 1;
+  z-index: 8;
+}
+
+/* 4 PM */
+.pos-right {
+  right: 18%;
+  top: 165px;
+  transform: rotateY(-58deg) rotateZ(5deg) scale(0.68);
+  opacity: 0.58;
+  z-index: 4;
+}
+
+/* 2 PM */
+.pos-far-right {
+  right: 4%;
+  top: 55px;
+  transform: rotateY(-72deg) rotateZ(8deg) scale(0.48);
+  opacity: 0.22;
+  z-index: 2;
+}
+
+/* Hidden transition */
+.pos-deep {
+  left: 50%;
+  top: -95px;
+  transform: translateX(-50%) scale(0.2);
+  opacity: 0;
+  z-index: 0;
 }
 
 /* ========================================
@@ -287,35 +356,33 @@ opacity: 0;
 }
 
 .zone-left {
-  left: 0;
-  opacity: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: -140px;
   justify-content: flex-start;
   padding-left: 18px;
 }
 
 .zone-right {
-  right: 0;
-  opacity: 1;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 140px;
   justify-content: flex-end;
   padding-right: 18px;
 }
 
 .zone-left:hover {
-  color: rgba(255, 255, 255, 0.65);
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.35),
-    transparent
-  );
+  opacity: 1;
+color: rgba(255, 255, 255, 0.65);
 }
 
 .zone-right:hover {
-  color: rgba(255, 255, 255, 0.65);
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.35),
-    transparent
-  );
+opacity: 1;
+color: rgba(255, 255, 255, 0.65);
+  
 }
 /* ========================================
    Drag / Swipe Support
@@ -335,7 +402,7 @@ opacity: 0;
    Side Card Depth Effect
    ======================================== */
 
-.left-card,
+/* .left-card,
 .right-card {
   filter:
     saturate(0.82)
@@ -343,36 +410,36 @@ opacity: 0;
     blur(0.2px);
 
   opacity: 0.62;
-}
+} */
 
 /* ========================================
    7-Card Orbital Carousel Layout
    ======================================== */
 
-.carousel-placeholder {
+ .carousel-placeholder {
   perspective: 1600px;
   transform-style: preserve-3d;
 }
 
 /* Back / 12 PM */
-.back-card {
+/* .back-card {
   left: 50%;
   top: -55px;
   transform:
     translateX(-50%)
     translateY(-30px)
-    scale(0.42);
+    scale(0.42); */
 
-  opacity: 0.14;
+  /* opacity: 0.14;
   z-index: 1;
   filter:
     saturate(0.55)
     brightness(0.48)
     blur(1px);
-}
+} */
 
 /* Back left */
-.far-left-card {
+/* .far-left-card {
   left: 2%;
   top: 8px;
   transform:
@@ -382,10 +449,10 @@ opacity: 0;
 
   opacity: 0.22;
   z-index: 2;
-}
+} */
 
 /* Left */
-.left-card {
+/* .left-card {
   left: 12%;
   top: 92px;
   transform:
@@ -395,10 +462,10 @@ opacity: 0;
 
   opacity: 0.62;
   z-index: 3;
-}
+} */
 
 /* Front / 6 PM */
-.center-card {
+/* .center-card {
   left: 50%;
   top: 190px;
   transform:
@@ -408,10 +475,10 @@ opacity: 0;
 
   opacity: 1;
   z-index: 7;
-}
+} */
 
 /* Right */
-.right-card {
+/* .right-card {
   right: 12%;
   top: 92px;
   transform:
@@ -421,10 +488,10 @@ opacity: 0;
 
   opacity: 0.62;
   z-index: 3;
-}
+} */
 
 /* Back right */
-.far-right-card {
+/* .far-right-card {
   right: 2%;
   top: 8px;
   transform:
@@ -434,10 +501,10 @@ opacity: 0;
 
   opacity: 0.22;
   z-index: 2;
-}
+}  */
 
 /* Deep orbit / hidden transition card */
-.deep-card {
+/* .deep-card {
   left: 50%;
   top: -18px;
   transform:
@@ -451,8 +518,112 @@ opacity: 0;
     saturate(0.4)
     brightness(0.35)
     blur(2px);
+} */
+
+/* ========================================
+   TEMP Debug Orbit Labels
+   Remove later
+   ======================================== */
+
+.orbit-card::after {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(123, 44, 245, 0.85);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 20;
 }
 
+.pos-back::after {
+  content: "12 PM";
+}
+
+.pos-far-left::after {
+  content: "10 PM";
+}
+
+.pos-left::after {
+  content: "8 PM";
+}
+
+.pos-front::after {
+  content: "6 PM";
+}
+
+.pos-right::after {
+  content: "4 PM";
+}
+
+.pos-far-right::after {
+  content: "2 PM";
+}
+
+.pos-deep::after {
+  content: "DEEP";
+}
+
+
+
+.carousel-zone {
+  top: 270px;
+  height: 280px;
+  z-index: 30;
+}
+
+.zone-left {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: -140px;
+}
+
+.zone-right {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 140px;
+}
+
+
+/* ========================================
+   Fixed Front Carousel Arrows
+   ======================================== */
+
+.carousel-placeholder .zone-left {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 55px;
+  padding-left: 18px;
+  justify-content: flex-start;
+}
+
+.carousel-placeholder .zone-right {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 160px;
+  padding-right: 18px;
+  justify-content: flex-end;
+}
+
+.carousel-zone {
+  pointer-events: auto;
+}
+
+.carousel-card {
+  pointer-events: none;
+}
+
+.carousel-card.pos-front {
+  pointer-events: none;
+}
 
 
 /*mobile*/

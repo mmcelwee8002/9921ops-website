@@ -1,8 +1,8 @@
 // ========================================
-// 9921ops Spherical Carousel Logic
+// 9921ops Orbital Carousel
 // ========================================
 
-// Image list
+// Images used in the carousel
 const images = [
   "images/photo1.jpg",
   "images/photo2.jpg",
@@ -10,265 +10,161 @@ const images = [
   "images/photo4.jpg",
   "images/photo5.jpg",
   "images/photo6.jpg",
+  "images/photo7.jpg",
 ];
 
-// Track active image
-let currentIndex = 1;
+// Orbit position classes
+const orbitPositions = [
+  "pos-back",
+  "pos-far-left",
+  "pos-left",
+  "pos-front",
+  "pos-right",
+  "pos-far-right",
+  "pos-deep",
+];
 
-// Prevent spam clicking during animation
-let isAnimating = false;
-
-// Card references
-// Orbit card references
-const deepCard = document.querySelector(".deep-card");
-const backCard = document.querySelector(".back-card");
-
-const farLeftCard = document.querySelector(".far-left-card");
-const leftCard = document.querySelector(".left-card");
-
-const centerCard = document.querySelector(".center-card");
-
-const rightCard = document.querySelector(".right-card");
-const farRightCard = document.querySelector(".far-right-card");
-
-
-// Image references
-const deepImage = deepCard.querySelector("img");
-const backImage = backCard.querySelector("img");
-
-const farLeftImage = farLeftCard.querySelector("img");
-const leftImage = leftCard.querySelector("img");
-
-const centerImage = centerCard.querySelector("img");
-
-const rightImage = rightCard.querySelector("img");
-const farRightImage = farRightCard.querySelector("img");
-
-// ========================================
-// Update carousel images
-// ========================================
-
-function updateCarousel() {
-
-  const positions = [];
-
-  // Build orbital image positions
-  for (let i = -3; i <= 3; i++) {
-
-    positions.push(
-      images[
-        (currentIndex + i + images.length) % images.length
-      ]
-    );
-  }
-
-  // Apply images to orbit positions
-  deepImage.src = positions[0];
-  backImage.src = positions[1];
-
-  farLeftImage.src = positions[2];
-  leftImage.src = positions[3];
-
-  centerImage.src = positions[4];
-
-  rightImage.src = positions[5];
-  farRightImage.src = positions[6];
-}
-
-// ========================================
-// Animate carousel movement
-// ========================================
-
-function animateRotation(direction) {
-
-  if (isAnimating) return;
-
-  isAnimating = true;
-
-// Animate cards during rotation
-
-centerCard.style.transform =
-  "scale(0.92) translateY(10px)";
-
-if (direction === "right") {
-
-  leftCard.style.transform =
-    "rotateY(65deg) translateX(-80px) scale(0.72)";
-
-  rightCard.style.transform =
-    "rotateY(-25deg) translateX(20px) scale(0.95)";
-
-} else {
-
-  leftCard.style.transform =
-    "rotateY(25deg) translateX(-20px) scale(0.95)";
-
-  rightCard.style.transform =
-    "rotateY(-65deg) translateX(80px) scale(0.72)";
-}
-
-  setTimeout(() => {
-
-    // Update image index
-    if (direction === "right") {
-      currentIndex =
-        (currentIndex + 1) % images.length;
-    } else {
-      currentIndex =
-        (currentIndex - 1 + images.length) % images.length;
-    }
-
-    // Update images
-    updateCarousel();
-
-// Reset transforms after animation
-leftCard.style.transform = "";
-centerCard.style.transform = "";
-rightCard.style.transform = "";
-
-    isAnimating = false;
-
-  }, 350);
-}
-
-// ========================================
-// Button interactions
-// ========================================
-
-// ========================================
-// Center Card Click + Drag / Swipe Support
-// ========================================
+// Carousel elements
+const carousel = document.querySelector(".carousel-placeholder");
+const orbitCards = Array.from(document.querySelectorAll(".orbit-card"));
 
 const zoneLeft = document.querySelector(".zone-left");
 const zoneRight = document.querySelector(".zone-right");
 
+// Carousel state
+let currentIndex = 0;
+let isAnimating = false;
+
 let dragStartX = 0;
 let dragEndX = 0;
 let isDragging = false;
+
 const swipeThreshold = 20;
 
-// Click left side: move carousel left as viewed on screen
-zoneLeft.addEventListener("click", (e) => {
-  e.stopPropagation();
+// ========================================
+// Initial Image Loading
+// ========================================
 
-  if (isDragging) return;
+function loadImages() {
+  orbitCards.forEach((card, index) => {
+    const image = card.querySelector("img");
 
-  animateRotation("right");
+    if (image && images[index]) {
+      image.src = images[index];
+    }
+  });
+}
+
+// ========================================
+// Orbit Position Updates
+// ========================================
+
+function updateOrbitPositions() {
+  orbitCards.forEach((card, index) => {
+    // Clear inline styles from drag movement
+    card.style.transform = "";
+    card.style.opacity = "";
+    card.style.filter = "";
+    card.style.zIndex = "";
+
+    // Remove old orbit position classes
+    orbitPositions.forEach((position) => {
+      card.classList.remove(position);
+    });
+
+    // Apply new orbit position
+    const positionIndex =
+      (index + currentIndex + orbitPositions.length) %
+      orbitPositions.length;
+
+    card.classList.add(orbitPositions[positionIndex]);
+  });
+}
+
+// ========================================
+// Rotation Logic
+// ========================================
+
+function rotateOrbit(direction) {
+  if (isAnimating) return;
+
+  isAnimating = true;
+
+  if (direction === "left") {
+    currentIndex =
+      (currentIndex + 1) % orbitPositions.length;
+  }
+
+  if (direction === "right") {
+    currentIndex =
+      (currentIndex - 1 + orbitPositions.length) %
+      orbitPositions.length;
+  }
+
+  updateOrbitPositions();
+
+  setTimeout(() => {
+    isAnimating = false;
+  }, 450);
+}
+
+// ========================================
+// Arrow Controls
+// ========================================
+
+zoneLeft.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  // Move carousel left visually
+  rotateOrbit("left");
 });
 
-// Click right side: move carousel right as viewed on screen
-zoneRight.addEventListener("click", (e) => {
-  e.stopPropagation();
+zoneRight.addEventListener("click", (event) => {
+  event.stopPropagation();
 
-  if (isDragging) return;
-
-  animateRotation("left");
+  // Move carousel right visually
+  rotateOrbit("right");
 });
 
-// Start drag / swipe
-centerCard.addEventListener("pointerdown", (e) => {
-  dragStartX = e.clientX;
-  dragEndX = e.clientX;
+// ========================================
+// Drag / Swipe Controls
+// ========================================
+
+carousel.addEventListener("pointerdown", (event) => {
+  dragStartX = event.clientX;
+  dragEndX = event.clientX;
   isDragging = false;
 
-  centerCard.setPointerCapture(e.pointerId);
+  carousel.setPointerCapture(event.pointerId);
 });
 
-// Track drag / swipe movement
-centerCard.addEventListener("pointermove", (e) => {
-
-  dragEndX = e.clientX;
+carousel.addEventListener("pointermove", (event) => {
+  dragEndX = event.clientX;
 
   const dragDistance = dragEndX - dragStartX;
 
-  // Activate dragging state
   if (Math.abs(dragDistance) > 4) {
     isDragging = true;
   }
-
-  // Live drag movement
-  if (isDragging) {
-
- const moveAmount = dragDistance * 0.12;
-const tiltAmount = dragDistance * 0.03;
-
-// Front card movement
-centerCard.style.transform =
-  `translateX(${moveAmount}px)
-   translateY(10px)
-   rotateZ(${tiltAmount}deg)
-   scale(1.08)`;
-
-// Left orbit
-leftCard.style.transform =
-  `rotateY(42deg)
-   rotateZ(-7deg)
-   translateX(${moveAmount * 0.35 - 20}px)
-   scale(0.78)`;
-
-farLeftCard.style.transform =
-  `rotateY(62deg)
-   rotateZ(-10deg)
-   translateX(${moveAmount * 0.22}px)
-   scale(0.62)`;
-
-// Right orbit
-rightCard.style.transform =
-  `rotateY(-42deg)
-   rotateZ(7deg)
-   translateX(${moveAmount * 0.35 + 20}px)
-   scale(0.78)`;
-
-farRightCard.style.transform =
-  `rotateY(-62deg)
-   rotateZ(10deg)
-   translateX(${moveAmount * 0.22}px)
-   scale(0.62)`;
-
-// Back orbit cards
-backCard.style.transform =
-  `translateX(-50%)
-   translateY(-30px)
-   scale(0.58)`;
-
-deepCard.style.transform =
-  `translateX(-50%)
-   translateY(-50px)
-   scale(0.42)`;
-  }
 });
 
-// Reset card positions
-// Reset orbit transforms
-deepCard.style.transform = "";
-backCard.style.transform = "";
+carousel.addEventListener("pointerup", (event) => {
+  carousel.releasePointerCapture(event.pointerId);
 
-farLeftCard.style.transform = "";
-leftCard.style.transform = "";
-
-centerCard.style.transform = "";
-
-rightCard.style.transform = "";
-farRightCard.style.transform = "";
-
-// End drag / swipe
-centerCard.addEventListener("pointerup", (e) => {
   const dragDistance = dragEndX - dragStartX;
 
-  centerCard.releasePointerCapture(e.pointerId);
+  if (!isDragging) return;
 
-  if (Math.abs(dragDistance) < swipeThreshold) {
-    return;
-  }
+  if (Math.abs(dragDistance) < swipeThreshold) return;
 
-  // Swipe right: move carousel right as viewed on screen
   if (dragDistance > 0) {
-    animateRotation("left");
+    // Swipe right: move carousel right visually
+    rotateOrbit("left");
   }
 
-  // Swipe left: move carousel left as viewed on screen
   if (dragDistance < 0) {
-    animateRotation("right");
+    // Swipe left: move carousel left visually
+    rotateOrbit("right");
   }
 
   setTimeout(() => {
@@ -276,37 +172,23 @@ centerCard.addEventListener("pointerup", (e) => {
   }, 50);
 });
 
-
 // ========================================
 // Initial Load
 // ========================================
 
-updateCarousel();
+loadImages();
+updateOrbitPositions();
 
 /*
 ========================================
-FUTURE IDEAS
+FUTURE UPDATES
 ========================================
 
-- Mobile swipe gestures
-- Auto rotation
-- Infinite card depth
-- Physics momentum
-- Dynamic image uploads
-- WebGL enhancement mode
-- AI-generated image streams
-
-True drag/swipe support
-desktop drag
-mobile finger swipe
-5-card orbital depth
-creates real sphere illusion
-Momentum/inertia
-smooth continuation after swipe
-Auto-scroll cinematic mode
-subtle idle movement
-Dynamic image loading
-no manual array maintenance
-
+- Add image replacement at back / 12 PM position
+- Add live drag preview
+- Add momentum / inertia
+- Add auto-rotation
+- Add dynamic folder or upload-based images
+- Remove debug position labels once layout is finalized
 
 */
