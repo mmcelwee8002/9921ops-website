@@ -191,4 +191,14 @@ FUTURE UPDATES
 - Add dynamic folder or upload-based images
 - Remove debug position labels once layout is finalized
 
+
+The next refinement pass will likely focus on:
+
+stabilizing orbit geometry
+consistent spacing between positions
+smoother transition timing
+better z-index layering
+true orbital interpolation
+
+
 */
