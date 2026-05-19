@@ -1,0 +1,657 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(123, 44, 245, 0.22), transparent 35%),
+    linear-gradient(135deg, #0d0d14, #050508);
+  color: #ffffff;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.logo {
+  position: relative;
+  font-size: clamp(4rem, 16vw, 12rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  text-shadow: 0 0 30px rgba(177, 94, 255, 0.35);
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  border-top: 8px solid rgba(123, 44, 245, 0.92);
+  border-bottom: 6px solid rgba(255, 255, 255, 0.88);
+  border-radius: 50%;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0.95;
+
+  box-shadow:
+  0 0 30px rgba(123, 44, 245, 0.28),
+  0 0 60px rgba(123, 44, 245, 0.12);
+
+filter: blur(0.2px);
+}
+
+.logo-white {
+  color: #ffffff;
+}
+
+.logo-purple {
+  color: #8b35ff;
+}
+
+.logo-sub {
+  margin-top: 28px;
+  font-size: clamp(1rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.65em;
+  color: #b15eff;
+}
+
+.tagline {
+  margin-top: 28px;
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #d7d2df;
+}
+
+
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.primary-button,
+.secondary-button {
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.primary-button {
+  background: #8b35ff;
+  color: white;
+  box-shadow: 0 0 24px rgba(139, 53, 255, 0.45);
+}
+
+.secondary-button {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: white;
+}
+
+.carousel-placeholder {
+  position: relative;
+  width: min(900px, 92vw);
+  height: 650px;
+  margin-top: 90px;
+
+  /* Visual centering adjustment for orbital carousel */
+  Left: -60px
+}
+
+.carousel-card {
+  position: absolute;
+  top: 30px;
+  width: 220px;
+  height: 280px;
+  border-radius: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(139, 53, 255, 0.18)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.center-card {
+  left: 50%;
+  transform: translateX(-50%) scale(1.08);
+  z-index: 3;
+}
+
+.left-card {
+  left: 30%;
+  transform: rotateY(38deg) rotateZ(-8deg) scale(0.88);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+.right-card {
+  right: 4%;
+  transform: rotateY(-38deg) rotateZ(8deg) scale(0.88);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+
+/* ========================================
+   Reusable Orbit Position Classes
+   ======================================== */
+
+/* 12 PM */
+.pos-back {
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%) scale(0.36);
+  opacity: 0.12;
+  z-index: 1;
+  filter: saturate(0.45) brightness(0.35) blur(1.6px);
+}
+
+/* 10 PM */
+.pos-far-left {
+  left: 7%;
+  top: 70px;
+  transform: rotateY(68deg) rotateZ(-8deg) scale(0.52);
+  opacity: 0.26;
+  z-index: 2;
+  filter: saturate(0.55) brightness(0.48) blur(0.8px);
+}
+
+/* 8 PM */
+.pos-left {
+  left: 19%;
+  top: 180px;
+  transform: rotateY(48deg) rotateZ(-5deg) scale(0.74);
+  opacity: 0.62;
+  z-index: 4;
+  filter: saturate(0.75) brightness(0.72) blur(0.2px);
+}
+
+/* 6 PM */
+.pos-front {
+  left: 50%;
+  top: 295px;
+  transform: translateX(-50%) scale(1.2);
+  opacity: 1;
+  z-index: 8;
+  filter: none;
+}
+
+/* 4 PM */
+.pos-right {
+  right: -11%;
+  top: 180px;
+  transform: rotateY(-48deg) rotateZ(5deg) scale(0.74);
+  opacity: 0.62;
+  z-index: 4;
+  filter: saturate(0.75) brightness(0.72) blur(0.2px);
+}
+
+/* 2 PM */
+.pos-far-right {
+  right: -16%;
+  top: 25px;
+  transform: rotateY(-68deg) rotateZ(8deg) scale(0.52);
+  opacity: 0.26;
+  z-index: 2;
+  filter: saturate(0.55) brightness(0.48) blur(0.8px);
+}
+
+/* Hidden transition */
+.pos-deep {
+  left: 50%;
+  top: -90px;
+  transform: translateX(-50%) scale(0.22);
+  opacity: 0;
+  z-index: 0;
+  filter: saturate(0.35) brightness(0.25) blur(2px);
+}
+
+/* ========================================
+   Carousel Images
+   ======================================== */
+
+.carousel-card {
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ========================================
+   Carousel Animation Enhancements
+   ======================================== */
+
+.carousel-card {
+  transition:
+    transform 0.45s ease,
+    opacity 0.45s ease,
+    box-shadow 0.45s ease;
+
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.carousel-card:hover {
+  transform: scale(1.06) !important;
+  opacity: 1;
+  z-index: 10;
+  box-shadow:
+    0 30px 80px rgba(139, 53, 255, 0.35),
+    0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.center-card {
+  opacity: 1;
+}
+
+@keyframes floatCard {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ========================================
+   Carousel Rotation Animation
+   ======================================== */
+
+.carousel-card.moving {
+  transform:
+    scale(0.96) !important;
+
+  opacity: 0.7;
+}
+
+/* ========================================
+   Sphere Positioning
+   ======================================== */
+
+.carousel-placeholder {
+  perspective: 1400px;
+}
+
+/* .left-card {
+  transform:
+    rotateY(42deg)
+    rotateZ(-7deg)
+    translateX(-20px)
+    scale(0.84);
+}
+
+.center-card {
+  transform:
+    translateY(-8px)
+    scale(1.08);
+
+  z-index: 5;
+}
+
+.right-card {
+  transform:
+    rotateY(-42deg)
+    rotateZ(7deg)
+    translateX(20px)
+    scale(0.84);
+} */
+
+/* Active movement animation */
+
+.carousel-card {
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* ========================================
+   Center Card Click Zones
+   ======================================== */
+
+.center-card {
+  cursor: pointer;
+}
+
+.carousel-zone {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0);
+  font-size: 4rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease;
+    display: flex;
+align-items: center;
+opacity: 0;
+}
+
+.zone-left {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: -140px;
+  justify-content: flex-start;
+  padding-left: 18px;
+}
+
+.zone-right {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 140px;
+  justify-content: flex-end;
+  padding-right: 18px;
+}
+
+.zone-left:hover {
+  opacity: 1;
+color: rgba(255, 255, 255, 0.65);
+}
+
+.zone-right:hover {
+opacity: 1;
+color: rgba(255, 255, 255, 0.65);
+  
+}
+/* ========================================
+   Drag / Swipe Support
+   ======================================== */
+
+.center-card {
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.center-card img {
+  pointer-events: none;
+}
+
+
+/* ========================================
+   Side Card Depth Effect
+   ======================================== */
+
+/* .left-card,
+.right-card {
+  filter:
+    saturate(0.82)
+    brightness(0.74)
+    blur(0.2px);
+
+  opacity: 0.62;
+} */
+
+/* ========================================
+   7-Card Orbital Carousel Layout
+   ======================================== */
+
+ .carousel-placeholder {
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+
+/* Back / 12 PM */
+/* .back-card {
+  left: 50%;
+  top: -55px;
+  transform:
+    translateX(-50%)
+    translateY(-30px)
+    scale(0.42); */
+
+  /* opacity: 0.14;
+  z-index: 1;
+  filter:
+    saturate(0.55)
+    brightness(0.48)
+    blur(1px);
+} */
+
+/* Back left */
+/* .far-left-card {
+  left: 2%;
+  top: 8px;
+  transform:
+    rotateY(72deg)
+    rotateZ(-10deg)
+    scale(0.48);
+
+  opacity: 0.22;
+  z-index: 2;
+} */
+
+/* Left */
+/* .left-card {
+  left: 12%;
+  top: 92px;
+  transform:
+    rotateY(58deg)
+    rotateZ(-7deg)
+    scale(0.68);
+
+  opacity: 0.62;
+  z-index: 3;
+} */
+
+/* Front / 6 PM */
+/* .center-card {
+  left: 50%;
+  top: 190px;
+  transform:
+    translateX(-50%)
+    translateY(10px)
+    scale(1.22);
+
+  opacity: 1;
+  z-index: 7;
+} */
+
+/* Right */
+/* .right-card {
+  right: 12%;
+  top: 92px;
+  transform:
+    rotateY(-58deg)
+    rotateZ(7deg)
+    scale(0.68);
+
+  opacity: 0.62;
+  z-index: 3;
+} */
+
+/* Back right */
+/* .far-right-card {
+  right: 2%;
+  top: 8px;
+  transform:
+    rotateY(-72deg)
+    rotateZ(10deg)
+    scale(0.48);
+
+  opacity: 0.22;
+  z-index: 2;
+}  */
+
+/* Deep orbit / hidden transition card */
+/* .deep-card {
+  left: 50%;
+  top: -18px;
+  transform:
+    translateX(-50%)
+    translateY(-50px)
+    scale(0.42);
+
+
+    
+  opacity: 0.12;
+  z-index: 0;
+  filter:
+    saturate(0.4)
+    brightness(0.35)
+    blur(2px);
+} */
+
+/* ========================================
+   TEMP Debug Orbit Labels
+   Remove later
+   ======================================== */
+
+.deep-card {
+  display: none;
+}
+
+.orbit-card::after {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(123, 44, 245, 0.85);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 20;
+}
+
+.pos-back::after {
+  content: "12 PM";
+}
+
+.pos-far-left::after {
+  content: "10 PM";
+}
+
+.pos-left::after {
+  content: "8 PM";
+}
+
+.pos-front::after {
+  content: "6 PM";
+}
+
+.pos-right::after {
+  content: "4 PM";
+}
+
+.pos-far-right::after {
+  content: "2 PM";
+}
+
+.pos-deep::after {
+  content: "DEEP";
+}
+
+
+
+.carousel-zone {
+  top: 270px;
+  height: 280px;
+  z-index: 30;
+}
+
+.zone-left {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: -140px;
+}
+
+.zone-right {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 140px;
+}
+
+
+/* ========================================
+   Fixed Front Carousel Arrows
+   ======================================== */
+
+.carousel-placeholder .zone-left {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 55px;
+  padding-left: 18px;
+  justify-content: flex-start;
+}
+
+.carousel-placeholder .zone-right {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 140px;
+  margin-left: 160px;
+  padding-right: 18px;
+  justify-content: flex-end;
+}
+
+.carousel-zone {
+  pointer-events: auto;
+}
+
+.carousel-card {
+  pointer-events: none;
+}
+
+.carousel-card.pos-front {
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+/*mobile*/
+
+@media (max-width: 600px) {
+  .logo-sub {
+    letter-spacing: 0.45em;
+  }
+
+  .tagline {
+    letter-spacing: 0.18em;
+    line-height: 1.7;
+  }
+}
