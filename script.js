@@ -70,6 +70,8 @@ carousel.addEventListener("pointerup", () => {
   }
 });
 
+
+
 updateOrbit();
 
 
@@ -80,3 +82,7 @@ updateOrbit();
 // easing/animation feel
 // mobile responsiveness
 // infinite image cycling later
+// Add momentum / inertia
+// Add auto-rotation
+// Add dynamic folder or upload-based images
+// Remove debug position labels once layout is finalized
