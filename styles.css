@@ -158,7 +158,7 @@ filter: blur(0.2px);
 
 /* 4 PM */
 .pos-right {
-  right: -10%;
+  left: 76%;
   top: 185px;
   transform: rotateY(-48deg) rotateZ(5deg) scale(0.74);
   opacity: 0.62;
@@ -168,7 +168,7 @@ filter: blur(0.2px);
 
 /* 2 PM */
 .pos-far-right {
-  right: -16%;
+  left: 88%;
   top: 45px;
   transform: rotateY(-68deg) rotateZ(8deg) scale(0.52);
   opacity: 0.28;

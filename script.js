@@ -62,12 +62,21 @@ carousel.addEventListener("pointerup", () => {
   if (Math.abs(dragDistance) < 30) return;
 
   if (dragDistance < 0) {
-    rotateOrbit("left");
+    rotateOrbit("right");
   }
 
   if (dragDistance > 0) {
-    rotateOrbit("right");
+    rotateOrbit("left");
   }
 });
 
 updateOrbit();
+
+
+// At this point your remaining work is mostly:
+
+// spacing polish
+// depth tuning
+// easing/animation feel
+// mobile responsiveness
+// infinite image cycling later
