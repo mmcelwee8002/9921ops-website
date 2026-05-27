@@ -257,11 +257,6 @@ filter: blur(0.2px);
     height: 220px;
   }
 
-  .carousel-arrow {
-    top: 330px;
-    opacity: 1;
-  }
-
   .arrow-left {
     left: calc(50% - 115px);
   }
