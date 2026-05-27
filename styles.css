@@ -239,7 +239,7 @@ filter: blur(0.2px);
 
 /*mobile*/
 
-/*mobile*/
+
 
 @media (max-width: 600px) {
   .logo-sub {
@@ -252,11 +252,9 @@ filter: blur(0.2px);
   }
 }
 
-/* @media (max-width: 600px) {
-
-  .carousel-arrow {
+  /* .carousel-arrow {
   display: none;
-}
+} */
   .carousel-placeholder {
     width: 100vw;
     height: 520px;
@@ -277,4 +275,3 @@ filter: blur(0.2px);
   .arrow-right {
     left: calc(50% + 65px);
   }
-} */
