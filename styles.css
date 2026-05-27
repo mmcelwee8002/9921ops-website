@@ -237,11 +237,11 @@ filter: blur(0.2px);
   left: calc(50% + 85px);
 }
 
+
+
 /*mobile*/
 
-
-
-/* @media (max-width: 600px) {
+@media (max-width: 600px) {
   .logo-sub {
     letter-spacing: 0.45em;
   }
@@ -250,12 +250,12 @@ filter: blur(0.2px);
     letter-spacing: 0.18em;
     line-height: 1.7;
   }
-} */
 
-  /* .carousel-arrow {
+
+  .carousel-arrow {
   display: none;
-} */
-  /* .carousel-placeholder {
+} 
+  .carousel-placeholder {
     width: 100vw;
     height: 520px;
     margin-top: 60px;
@@ -268,10 +268,11 @@ filter: blur(0.2px);
     height: 220px;
   }
 
-  .arrow-left {
+   .arrow-left {
     left: calc(50% - 115px);
   }
 
   .arrow-right {
     left: calc(50% + 65px);
-  } */
+  } 
+}
