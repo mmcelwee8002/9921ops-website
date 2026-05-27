@@ -47,6 +47,20 @@ function rotateOrbit(direction) {
   }, 450);
 }
 
+const arrowLeft = document.querySelector(".arrow-left");
+const arrowRight = document.querySelector(".arrow-right");
+
+arrowLeft.addEventListener("click", (event) => {
+  event.stopPropagation();
+  rotateOrbit("right");
+});
+
+arrowRight.addEventListener("click", (event) => {
+  event.stopPropagation();
+  rotateOrbit("left");
+});
+
+
 carousel.addEventListener("pointerdown", (event) => {
   dragStartX = event.clientX;
   dragEndX = event.clientX;
