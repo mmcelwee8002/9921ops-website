@@ -156,24 +156,42 @@ filter: blur(0.2px);
   filter: none;
 }
 
-/* 4 PM */
+/* 4 PM 
+/* 4 PM - closer, larger, stronger angle */
 .pos-right {
-  left: 76%;
-  top: 185px;
-  transform: rotateY(-48deg) rotateZ(5deg) scale(0.74);
-  opacity: 0.62;
-  z-index: 4;
-  filter: saturate(0.75) brightness(0.72);
+  left: 66%;
+  top: 225px;
+
+  transform:
+    rotateY(-58deg)
+    rotateZ(7deg)
+    scale(.98);
+
+  opacity: 0.78;
+  z-index: 5;
+
+  filter:
+    saturate(0.88)
+    brightness(0.82);
 }
 
-/* 2 PM */
+/* 2 PM - outer edge of sphere */
 .pos-far-right {
-  left: 88%;
-  top: 45px;
-  transform: rotateY(-68deg) rotateZ(8deg) scale(0.52);
-  opacity: 0.28;
-  z-index: 2;
-  filter: saturate(0.55) brightness(0.48) blur(0.8px);
+  left: 64%;
+  top: 20px;
+
+  transform:
+    rotateY(-118deg)
+    rotateZ(8deg)
+    scale(0.66);
+
+  opacity: 0.42;
+  z-index: 3;
+
+  filter:
+    saturate(0.68)
+    brightness(0.58)
+    blur(0.4px);
 }
 
 /* 12 PM */
@@ -186,24 +204,43 @@ filter: blur(0.2px);
   filter: saturate(0.45) brightness(0.35) blur(1.4px);
 }
 
-/* 10 PM */
+/* 10 PM - outer edge of sphere */
 .pos-far-left {
-  left: -16%;
-  top: 45px;
-  transform: rotateY(68deg) rotateZ(-8deg) scale(0.52);
-  opacity: 0.28;
-  z-index: 2;
-  filter: saturate(0.55) brightness(0.48) blur(0.8px);
+  left:15%;
+  top: 20px;
+
+  transform:
+    rotateY(118deg)
+    rotateZ(-8deg)
+    scale(0.66);
+
+  opacity: 0.42;
+  z-index: 3;
+
+  filter:
+    saturate(0.68)
+    brightness(0.58)
+    blur(0.4px);
 }
 
-/* 8 PM */
+/* 8 PM 
+
+/* 8 PM - closer, larger, stronger angle */
 .pos-left {
-  left: -10%;
-  top: 185px;
-  transform: rotateY(48deg) rotateZ(-5deg) scale(0.74);
-  opacity: 0.62;
-  z-index: 4;
-  filter: saturate(0.75) brightness(0.72);
+  left: 10%;
+  top: 225px;
+
+  transform:
+    rotateY(58deg)
+    rotateZ(-7deg)
+    scale(0.98);
+
+  opacity: 0.78;
+  z-index: 5;
+
+  filter:
+    saturate(0.88)
+    brightness(0.82);
 }
 }
 
