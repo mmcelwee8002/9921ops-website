@@ -240,12 +240,29 @@ filter: blur(0.2px);
 /*mobile*/
 
 @media (max-width: 600px) {
-  .logo-sub {
-    letter-spacing: 0.45em;
+  .carousel-placeholder {
+    width: 100vw;
+    height: 520px;
+    margin-top: 60px;
+    transform: scale(0.78);
+    transform-origin: top center;
   }
 
-  .tagline {
-    letter-spacing: 0.18em;
-    line-height: 1.7;
+  .orbit-card {
+    width: 170px;
+    height: 220px;
+  }
+
+  .carousel-arrow {
+    top: 330px;
+    opacity: 1;
+  }
+
+  .arrow-left {
+    left: calc(50% - 115px);
+  }
+
+  .arrow-right {
+    left: calc(50% + 65px);
   }
 }
