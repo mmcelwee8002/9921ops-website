@@ -241,7 +241,7 @@ filter: blur(0.2px);
 
 
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .logo-sub {
     letter-spacing: 0.45em;
   }
@@ -250,12 +250,12 @@ filter: blur(0.2px);
     letter-spacing: 0.18em;
     line-height: 1.7;
   }
-}
+} */
 
   /* .carousel-arrow {
   display: none;
 } */
-  .carousel-placeholder {
+  /* .carousel-placeholder {
     width: 100vw;
     height: 520px;
     margin-top: 60px;
@@ -274,4 +274,4 @@ filter: blur(0.2px);
 
   .arrow-right {
     left: calc(50% + 65px);
-  }
+  } */
