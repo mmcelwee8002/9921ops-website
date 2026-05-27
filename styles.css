@@ -240,6 +240,10 @@ filter: blur(0.2px);
 /*mobile*/
 
 @media (max-width: 600px) {
+
+  .carousel-arrow {
+  display: none;
+}
   .carousel-placeholder {
     width: 100vw;
     height: 520px;
