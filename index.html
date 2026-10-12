@@ -1,101 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic page setup -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>9921ops</title>
-
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore working websites by 9921ops: games, data tools, and practical digital solutions.">
+  <title>9921ops | Working ideas</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-
-  <!-- ========================================
-       HERO SECTION
-       ======================================== -->
   <header class="hero">
-
-    <!-- Editable text-based logo -->
-    <div class="logo">
-      <span class="logo-white">99</span><span class="logo-purple">21</span>
-
-      <div class="logo-sub">
-        OPS
-      </div>
-    </div>
-
-    <!-- Brand tagline -->
-    <p class="tagline">
-      Systems. Tools. Insights. Results.
-    </p>
-
-    <!-- Hero call-to-action buttons -->
-    <div class="hero-buttons">
-
-      <a href="#" class="primary-button">
-        Explore
-      </a>
-
-      <a href="#" class="secondary-button">
-        Projects
-      </a>
-
-    </div>
-
-<!-- ========================================
-     Orbital Spherical Carousel
-     ======================================== -->
-
-<div class="carousel-placeholder">
-<button class="carousel-arrow arrow-left" aria-label="Previous image">‹</button>
-<button class="carousel-arrow arrow-right" aria-label="Next image">›</button>
-  <!-- Back / 12 PM -->
-  <div class="carousel-card orbit-card back-card pos-back">
-    <img src="images/photo1.jpg" alt="Gallery image">
-  </div>
-
-  <!-- Back Left -->
-  <div class="carousel-card orbit-card far-left-card pos-far-left">
-    <img src="images/photo2.jpg" alt="Gallery image">
-  </div>
-
-  <!-- Left -->
-  <div class="carousel-card orbit-card left-card pos-left">
-    <img src="images/photo3.jpg" alt="Gallery image">
-  </div>
-
-  <!-- Center / Front / 6 PM -->
-  <div class="carousel-card orbit-card center-card pos-front">
-
-    <img src="images/photo4.jpg" alt="Gallery image">
-
-  </div>
-
-  <!-- Right -->
-  <div class="carousel-card orbit-card right-card pos-right">
-    <img src="images/photo5.jpg" alt="Gallery image">
-  </div>
-
-  <!-- Back Right -->
-  <div class="carousel-card orbit-card far-right-card pos-far-right">
-    <img src="images/photo6.jpg" alt="Gallery image">
-  </div>
-
-  <!-- Transition / Deep Orbit -->
-  <!-- <div class="carousel-card orbit-card deep-card pos-deep">
-    <img src="images/photo7.jpg" alt="Gallery image">
-  </div> -->
-
-
-
-
+    <a class="logo" href="#" aria-label="9921ops home"><span class="logo-white">99</span><span class="logo-purple">21</span><span class="logo-sub">OPS</span></a>
+    <p class="tagline">Systems. Tools. Insights. Results.</p>
+    <h1>Ideas you can explore.</h1>
+    <p class="intro">Games, data, and practical solutions. Explore the working websites behind 9921ops.</p>
+    <div class="hero-buttons"><a href="#projects" class="primary-button">Explore projects <span aria-hidden="true">↓</span></a><a href="mailto:9921ops@gmail.com" class="secondary-button">Get in touch</a></div>
   </header>
-
-  <!-- Main JavaScript -->
-  <script src="script.js"></script>
-
+  <main>
+    <section id="projects" class="projects" aria-labelledby="projects-heading">
+      <div class="section-heading"><p class="eyebrow">Built by 9921ops</p><h2 id="projects-heading">The showcase</h2><p>Live websites, ready to explore.</p></div>
+      <div class="carousel-placeholder" role="region" aria-roledescription="carousel" aria-label="Project showcase" tabindex="0">
+        <div class="orbit-ring" aria-hidden="true"></div>
+        <div id="project-cards"></div>
+      </div>
+      <div class="carousel-controls"><button type="button" class="carousel-arrow arrow-left" aria-label="Previous project">←</button><div id="project-tabs" class="project-tabs" aria-label="Choose a project"></div><button type="button" class="carousel-arrow arrow-right" aria-label="Next project">→</button></div>
+      <div class="project-detail" aria-live="polite" aria-atomic="true"><p id="project-category" class="eyebrow"></p><h3 id="project-title"></h3><p id="project-description"></p><p id="project-skills" class="project-skills"></p></div>
+      <div class="project-actions"><button type="button" id="try-project" class="primary-button">Try it here</button><a id="open-project" class="secondary-button" target="_blank" rel="noopener noreferrer">Open website <span aria-hidden="true">↗</span></a></div>
+      <p class="preview-note">Swipe or use the arrows to browse. Choose “Try it here” to interact with a website.</p>
+      <noscript><p>Explore <a href="https://mmcelwee8002.github.io/trace/">Trace</a>, <a href="https://poll-zero.vercel.app/">Poll Zero</a>, and <a href="https://mmcelwee8002.github.io/ClearGrid-Solutions/">Clear Grid Solutions</a>.</p></noscript>
+    </section>
+    <section class="about" aria-labelledby="about-heading"><p class="eyebrow">From an idea to something useful</p><h2 id="about-heading">Made to do something.</h2><p>9921ops is the home of projects by Matthew McElwee. Each one turns an idea into a tool or experience you can use—from tracing a puzzle path to exploring college football rankings.</p><a href="mailto:9921ops@gmail.com">Have a question? Get in touch <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer><span>© <span id="year">2026</span> 9921ops</span><a href="mailto:9921ops@gmail.com">9921ops@gmail.com</a></footer>
+  <dialog id="project-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><h2 id="dialog-title"></h2><a id="dialog-open" target="_blank" rel="noopener noreferrer">Open website ↗</a><button type="button" id="close-dialog" aria-label="Close project">✕</button></div><div id="interactive-preview"></div><p class="dialog-note">If the preview doesn’t appear, use “Open website” above.</p></dialog>
 </body>
 </html>
