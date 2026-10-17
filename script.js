@@ -66,8 +66,8 @@ function rotateOrbit(step) {
   selectedIndex = (selectedIndex + step + projects.length) % projects.length;
   updateOrbit();
 }
-document.querySelector(".arrow-left").addEventListener("click", () => rotateOrbit(-1));
-document.querySelector(".arrow-right").addEventListener("click", () => rotateOrbit(1));
+document.querySelector(".arrow-right").addEventListener("click", () => rotateOrbit(-1));
+document.querySelector(".arrow-left").addEventListener("click", () => rotateOrbit(1));
 carousel.addEventListener("keydown", event => {
   if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
   event.preventDefault();
